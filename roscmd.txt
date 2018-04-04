@@ -1,0 +1,91 @@
+Nodes: A node is an executable that uses ROS to communicate with other nodes.
+       Nodes can publish or subscribe to a Topic. Nodes can also provide or use a Service.
+
+Messages: ROS data type used when subscribing or publishing to a topic.
+
+Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+
+Master: Name service for ROS (i.e. helps nodes find each other)
+
+rosout: ROS equivalent of stdout/stderr
+
+roscore: Master + rosout + parameter server (parameter server will be introduced later)
+
+
+1.$ printenv | grep ROS
+//ensure that environment variables like ROS_ROOT and ROS_PACKAGE_PATH are set
+
+2.$ source /opt/ros/kinetic/setup.bash
+//You will need to run this command on every new shell you open to have access to the ROS commands, unless you add this line to your .bashrc
+
+3.$ mkdir -p ~/catkin_ws/src
+  $ cd ~/catkin_ws/
+  $ catkin_make
+//create and build a catkin workspace
+
+4.$ source devel/setup.bash
+//Before continuing, source your new setup.*sh file
+
+5.$ echo $ROS_PACKAGE_PATH
+//To make sure your workspace is properly overlayed by the setup script, make sure ROS_PACKAGE_PATH environment variable includes the directory you're in.
+
+6.$ rospack find [package_name]       $ rospack find roscpp
+  $ roscd [locationname[/subdir]]     $ roscd roscpp/cmake
+  $ rosls [locationname[/subdir]]     $ rosls roscpp_tutorials
+  $ rosls <<< now push the TAB key twice >>> //see a list of all currently installed packages
+
+7.$ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]  
+  $ catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+//First change to the source space directory of the catkin workspace
+
+8.$ cd ~/catkin_ws
+  $ catkin_make
+  $ source ~/catkin_ws/devel/setup.bash
+
+9.$ rospack depends1 beginner_tutorials //first-order dependencies
+  $ rospack depends beginner_tutorials  //all nested dependencies
+
+10.Customizing the package.xml
+
+11.Customizing the CMakeLists.txt
+
+12.$ rosnode list //lists all active nodes
+
+13.$ rosnode info /rosout  //lists info about nodes such as publications and subscriptions
+
+14.$ rosrun [package_name] [node_name]  __name:=my_name //run the node in a package and rename it
+
+15.$ rosrun rqt_graph rqt_graph  $ rosrun rqt_plot rqt_plot
+
+16.$ rostopic echo [topic] //shows the data published on a topic
+
+17.$ rostopic list -v  
+
+18.$ rostopic type [topic]
+
+19.$ rosmsg show [type of topic]
+
+20.$ rostopic pub [topic] [msg_type] [args]
+
+21.$ rostopic hz [topic] //reports the rate at which data is published
+
+22.$ rosservice list/call/type 
+
+23.$ rosparam set/get/load/dump/delete/list
+
+24.$ rosrun rqt_console rqt_console
+
+25.$ rosrun rqt_logger_level rqt_logger_level
+
+26.$ roslaunch [package] [filename.launch]
+
+27.$ rosed [package_name] [filename]
+
+
+
+
+
+
+
+
+
